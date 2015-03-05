@@ -1,5 +1,28 @@
 @media screen {
+
     a:link {
         display: block;
+        text-decoration:none;
+    }
+
+    header {
+        list-style:none;
+        height: 30px;
+    }
+
+    header li {
+        width: 22%;
+        margin:2px;
+        float:left;
+    }
+
+    header li a {
+        text-align:center;
+        color:#FFF;
+        background-color:#ff9d7e;
+    }
+    
+    header div {
+        margin-left: 13%;
     }
 }

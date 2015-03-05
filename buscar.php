@@ -1,12 +1,13 @@
 <?php
 
 include_once './lib.php';
+include_once './formulario.php';
 
 View::start('Búsqueda');
 
 echo '<h1>BÚSQUEDA DE VIDEOJUEGOS</h1>';
 
-formularioDeBusqueda();
+echo Formulario::formularioBuscar();
 
 if (filter_input(INPUT_POST, 'busqueda') === '') {
     busquedaNoExitosa(false);
@@ -17,15 +18,6 @@ if (filter_input(INPUT_POST, 'busqueda') === '') {
 View::end();
 
 exit(0);
-
-function formularioDeBusqueda() {
-    echo '<form action="buscar.php" method="post">
-            <p>
-                Escriba una parte o el nombre completo del juego que desee buscar: <input type="search" name="busqueda"/>
-                <input type="submit" value="Buscar">
-            </p>
-        </form>';
-}
 
 function buscar() {
     $results = (new SQLite3('datos.db'))->query('SELECT nombre,id FROM juegos');

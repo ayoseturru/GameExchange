@@ -1,14 +1,9 @@
 <?php
 
 include_once 'lib.php';
+include_once './formulario.php';
 View::start('Club de Intercambio de Videojuegos');
-echo '<a href="login.php">Acceso</a>';
-echo '<form action="buscar.php" method="post">
-            <p>
-                Escriba el nombre del juego a buscar: <input type="search" name="busqueda"/>
-                <input type="submit" value="Buscar">
-            </p>
-        </form>';
+echo Formulario::formularioBuscar();
 $db = new PDO("sqlite:./datos.db");
 $db->exec('PRAGMA foreign_keys = ON;');
 $res = $db->prepare('SELECT * FROM juegos;');

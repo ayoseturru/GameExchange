@@ -37,5 +37,6 @@ function iniciarSesion() {
     $_SESSION["id"] = 0;
     $_SESSION["usuario"] = filter_input(INPUT_POST, 'usuario');
     setcookie('nombre', (new SQLite3('datos.db'))->query('SELECT NOMBRE FROM USUARIOS WHERE USUARIO ="' . $_SESSION["usuario"] . '"')->fetchArray()[0]);
+    setcookie('idusuario', (new SQLite3('datos.db'))->query('SELECT ID FROM USUARIOS WHERE USUARIO ="' . $_SESSION["usuario"] . '"')->fetchArray()[0]);
     session_write_close();
 }

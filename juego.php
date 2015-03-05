@@ -41,11 +41,28 @@ function mostrarInfoExtra() {
     $aux = (new SQLite3('datos.db'))->query('SELECT USUARIO FROM CAMBIABLES WHERE JUEGO=' . filter_input(INPUT_GET, 'id'));
     echo '<h3>Prestamistas</h3>';
     echo '<p>A continuación te mostramos los correos de las personas que poseen el juego para que te puedas poner en contacto con ellos:<p>';
+    $prestado = FALSE;
     while ($row = $aux->fetchArray()) {
+        if ($row[0] == $_COOKIE['idusuario']) {
+            $prestado = TRUE;
+            continue;
+        }
         imprimirPrestamista($row[0]);
     }
+    ofrecerDesofrecer($prestado);
 }
 
 function imprimirPrestamista($prestamista) {
     echo (new SQLite3('datos.db'))->query('SELECT EMAIL FROM USUARIOS WHERE ID=' . $prestamista)->fetchArray()[0] . '<br>';
+}
+
+function ofrecerDesofrecer($prestado) {
+    $query = '.php?game=' . filter_input(INPUT_GET, 'id');
+    if ($prestado === TRUE) {
+        $url = 'quitar_juego' . $query;
+        echo "<a href=$url>Quiero dejar de ofrecer este juego</a>";
+    } else {
+        $url = 'ofrecer_juego' . $query;
+        echo "<a href=$url>Quiero ofrecer este juego</a>";
+    }
 }
