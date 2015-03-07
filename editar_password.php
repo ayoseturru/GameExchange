@@ -11,15 +11,15 @@ if (strlen(filter_input(INPUT_POST, 'nueva_password')) < 8) {
 }
 
 session_start();
-if (md5(filter_input(INPUT_POST, 'antigua_password')) != (new SQLite3('datos.db'))->query('SELECT CLAVE FROM USUARIOS WHERE usuario="'
-                . $_SESSION['usuario'] . '"')->fetchArray()[0]) {
+if (md5(filter_input(INPUT_POST, 'antigua_password')) != (new PDO('sqlite:./datos.db'))->query('SELECT CLAVE FROM USUARIOS WHERE usuario="'
+                . $_SESSION['usuario'] . '"')->fetchColumn(0)) {
     session_write_close();
     header('Location: password.php?passwd=3');
     exit(3);
 }
 
-(new SQLite3('datos.db'))->exec('UPDATE USUARIOS SET clave="' . md5(filter_input(INPUT_POST, 'nueva_password')) . '" WHERE usuario="'
-        . $_SESSION["usuario"] . '"');
+$inst = (new PDO('sqlite:./datos.db'))->prepare('UPDATE USUARIOS SET clave=? WHERE USUARIO=?');
+$res = $inst->execute(array(md5(filter_input(INPUT_POST, 'nueva_password')), $_SESSION["usuario"]));
 session_write_close();
 header('Location: password.php?passwd=4');
 exit(1);

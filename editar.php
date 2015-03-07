@@ -3,13 +3,14 @@
 session_start();
 
 if (filter_input(INPUT_POST, 'editar_nombre')) {
-    (new SQLite3('datos.db'))->exec('UPDATE USUARIOS SET nombre="' . filter_input(INPUT_POST, 'editar_nombre') . '" WHERE usuario="'
-            . $_SESSION["usuario"] . '"');
+    $inst = (new PDO('sqlite:./datos.db'))->prepare('UPDATE USUARIOS SET NOMBRE=? WHERE USUARIO=?');
+    $res = $inst->execute(array(filter_input(INPUT_POST, 'editar_nombre'), $_SESSION["usuario"]));
+    $_COOKIE["nombre"] = filter_input(INPUT_POST, 'editar_nombre');
 }
 
 if (filter_input(INPUT_POST, 'editar_email')) {
-    (new SQLite3('datos.db'))->exec('UPDATE USUARIOS SET email="' . filter_input(INPUT_POST, 'editar_email') . '" WHERE usuario="'
-            . $_SESSION["usuario"] . '"');
+    $inst = (new PDO('sqlite:./datos.db'))->prepare('UPDATE USUARIOS SET email=? WHERE USUARIO=?');
+    $res = $inst->execute(array(filter_input(INPUT_POST, 'editar_email'), $_SESSION["usuario"]));
 }
 
 session_write_close();

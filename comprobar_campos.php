@@ -1,10 +1,10 @@
 <?php
 
-camposRellenos();
-usernameDisponible();
-registro();
+allFields();
+usernameAvailable();
+register();
 
-function camposRellenos() {
+function allFields() {
     if (!filter_input(INPUT_POST, 'usuario') || !filter_input(INPUT_POST, 'clave') || !filter_input(INPUT_POST, 'nombre') || !filter_input(INPUT_POST, 'email')) {
         header('Location: registro.php?registro=1');
         exit(1);
@@ -14,29 +14,32 @@ function camposRellenos() {
     }
 }
 
-function usernameDisponible() {
-    $row = (new SQLite3('datos.db'))->query('SELECT USUARIO FROM USUARIOS WHERE USUARIO ="' . filter_input(INPUT_POST, 'usuario') . '"')->fetchArray();
-    if ($row) {
-        header('Location: registro.php?registro=3');
-        exit(3);
+function usernameAvailable() {
+    $result = (new PDO("sqlite:./datos.db"))->query('SELECT USUARIO FROM USUARIOS WHERE USUARIO ="' . filter_input(INPUT_POST, 'usuario') . '"');
+    if ($result) {
+        foreach ($result as $value) {
+            if ($value[usuario] == filter_input(INPUT_POST, 'usuario')) {
+                header('Location: registro.php?registro=3');
+                exit(3);
+            }
+        }
     }
 }
 
-function registro() {
-    (new SQLite3('datos.db'))->exec('INSERT INTO USUARIOS (USUARIO, CLAVE, NOMBRE, EMAIL, TIPO) VALUES ("'
-            . filter_input(INPUT_POST, 'usuario') . '","' . md5(filter_input(INPUT_POST, 'clave')) . '","' .
-            filter_input(INPUT_POST, 'nombre') . '","' . filter_input(INPUT_POST, 'email') . '",0)');
-    iniciarSesion();
+function register() {
+    $inst = (new PDO('sqlite:./datos.db'))->prepare('INSERT INTO usuarios (usuario, clave, nombre, email, tipo) VALUES (?, ?, ?,?,?)');
+    $res = $inst->execute([filter_input(INPUT_POST, 'usuario'), md5(filter_input(INPUT_POST, 'clave')), filter_input(INPUT_POST, 'nombre'), filter_input(INPUT_POST, 'email'), 0]);
+    logIn();
     header('Location: principal.php');
     exit(0);
 }
 
-function iniciarSesion() {
+function logIn() {
     session_start();
     $_SESSION["identificado"] = TRUE;
     $_SESSION["id"] = 0;
     $_SESSION["usuario"] = filter_input(INPUT_POST, 'usuario');
-    setcookie('nombre', (new SQLite3('datos.db'))->query('SELECT NOMBRE FROM USUARIOS WHERE USUARIO ="' . $_SESSION["usuario"] . '"')->fetchArray()[0]);
-    setcookie('idusuario', (new SQLite3('datos.db'))->query('SELECT ID FROM USUARIOS WHERE USUARIO ="' . $_SESSION["usuario"] . '"')->fetchArray()[0]);
+    setcookie('nombre',(new PDO('sqlite:./datos.db'))->query('SELECT NOMBRE FROM USUARIOS WHERE USUARIO ="' . $_SESSION["usuario"] . '"')->fetchColumn(0));
+    setcookie('idusuario',(new PDO('sqlite:./datos.db'))->query('SELECT id FROM USUARIOS WHERE USUARIO ="' . $_SESSION["usuario"] . '"')->fetchColumn(0));
     session_write_close();
 }

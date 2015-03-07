@@ -10,32 +10,34 @@ echo '<h1>BÚSQUEDA DE VIDEOJUEGOS</h1>';
 echo Formulario::formularioBuscar();
 
 if (filter_input(INPUT_POST, 'busqueda') === '') {
-    busquedaNoExitosa(false);
+    failSearch(false);
 } else {
-    buscar();
+    search();
 }
 
 View::end();
 
 exit(0);
 
-function buscar() {
-    $results = (new SQLite3('datos.db'))->query('SELECT nombre,id FROM juegos');
-    $firstTime = TRUE;
-    while ($row = $results->fetchArray()) {
-        if (stripos($row[0], filter_input(INPUT_POST, 'busqueda')) === FALSE) {
-            continue;
-        } else {
-            if ($firstTime) {
-                echo '<h2>Resultados de la búsqueda</h2>';
-                $firstTime = FALSE;
+function search() {
+    $result = (new PDO("sqlite:./datos.db"))->query('SELECT nombre,id FROM juegos');
+    $first = TRUE;
+    if ($result) {
+        foreach ($result as $value) {
+            if (stripos($value['nombre'], filter_input(INPUT_POST, 'busqueda')) === FALSE) {
+                continue;
+            } else {
+                if ($first) {
+                    echo '<h2>Resultados de la búsqueda</h2>';
+                    $first = FALSE;
+                }
+                $url = "juego.php?id=$value[id]";
+                echo "<a href=$url>$value[nombre]</a>";
             }
-            $url = "juego.php?id=$row[1]";
-            echo "<a href=$url>$row[0]</a>";
         }
     }
 }
 
-function busquedaNoExitosa() {
+function failSearch() {
     echo '<p>Introduzca un texto en el buscador...</p>';
 }

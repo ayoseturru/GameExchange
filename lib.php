@@ -46,8 +46,8 @@ class View {
     }
     
     function admin() {
-        if(in_array('identificado', $_SESSION) and $_SESSION["id"] === 1 ) {
-            echo "<a href='usuarios.php'>Gestión de usuarios<a>";
+        if(in_array('identificado', $_SESSION) and $_SESSION["id"] == 1 ) {
+            echo "<a href='gestion.php'>Administración<a>";
         }
     }
 }
