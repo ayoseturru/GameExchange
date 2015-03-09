@@ -12,7 +12,7 @@ class View {
 </head>
 <body>";
         echo $html;
-        (new View())->mostrarHeader();
+        (new View())->showHeader();
     }
 
     public static function end() {
@@ -20,34 +20,42 @@ class View {
 </html>';
     }
 
-    private function mostrarHeader() {
+    private function showHeader() {
+        echo "<a href='index.php'><img src = 'club.jpg'><img></a>";
         session_start();
-        $cuarto = 'Nosotros';
-        $cuartoDireccion = 'info.php';
-        if (in_array('identificado', $_SESSION)) {
+        $first = "Portada";
+        $firstPath= "index.php";
+        $fourth = 'Nosotros';
+        $fourthPath = 'info.php';
+        $third = "Política";
+        $thirdPath = "policy.php";
+        if (in_array('identify', $_SESSION)) {
             $accion = "Salir";
-            $direccion = "desconexion.php";
-            $cuarto = "Perfil";
-            $cuartoDireccion = "gestion_perfil.php";
+            $path = "exit.php";
+            $third = "Home";
+            $thirdPath = "home.php";
+            $fourth = "Perfil";
+            $fourthPath = "edit_profile.php";
+            if ($_SESSION["type"] == 1) {
+                $first = "Home";
+                $firstPath = "home.php";
+                $third = "Administración";
+                $thirdPath = "manager.php";
+            }
         } else {
-            $accion = "Identificarse";
-            $direccion = "login.php";
+            $accion = "Acceso";
+            $path = "login.php";
         }
-        
+
         echo
-        "<header><div>
-                <li> <a href='index.php'>Portada</a></li>
-                <li> <a href='buscar.php'>Buscar</a></li>
-                <li> <a href=$direccion>$accion</a></li>
-                <li> <a href=$cuartoDireccion>$cuarto</a></li>
-        </div></header>";
-        (new View())->admin();
+        "<header>
+                <li> <a href=$firstPath>$first</a></li>
+                <li> <a href='search.php'>Buscar</a></li>
+                <li> <a href=$thirdPath>$third</a></li>
+                <li> <a href=$fourthPath>$fourth</a></li>
+                <li> <a href=$path>$accion</a></li>
+        </header>";
         session_write_close();
     }
-    
-    function admin() {
-        if(in_array('identificado', $_SESSION) and $_SESSION["id"] == 1 ) {
-            echo "<a href='gestion.php'>Administración<a>";
-        }
-    }
+
 }

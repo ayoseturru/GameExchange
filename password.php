@@ -1,15 +1,16 @@
 <?php
 
 include_once 'lib.php';
+include_once './MyForm.php';
 View::start('Modificar Contraseña');
 session_start();
 
-if (!$_SESSION['identificado']) {
+if (!$_SESSION['identify']) {
     session_write_close();
     header('Location:login.php');
     exit(1);
 } else {
-    intentosPrevios();
+    previous();
     mostrarPasswordField();
 }
 
@@ -17,15 +18,10 @@ session_write_close();
 View::end();
 
 function mostrarPasswordField() {
-    echo
-    '<form action = "editar_password.php" method = "post">
-    <p>Antigua Contraseña: <input type = "password" name = "antigua_password" /></p>
-    <p>Nueva Contraseña: <input type = "password" name = "nueva_password" /></p>
-    <p><input type = "submit" value="Modificar" /></p>
-    </form>';
+    echo MyForm::editPasswordForm();
 }
 
-function intentosPrevios() {
+function previous() {
     switch (filter_input(INPUT_GET, 'passwd')) {
         case 1:
             echo '<p>Asegúrese de haber rellenado ambos cambos...</p>';
@@ -38,6 +34,9 @@ function intentosPrevios() {
             break;
         case 4:
             echo '<p>La contraseña se ha cambiado correctamente</p>';
+            break;
+        case 5:
+            echo '<p>Las contraseñas no coinciden...</p>';
             break;
         default:
             break;

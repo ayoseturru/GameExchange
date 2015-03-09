@@ -1,25 +1,25 @@
 <?php
 
 include_once './lib.php';
-include_once './formulario.php';
+include_once './MyForm.php';
 
 
 View::start('Administración');
 session_start();
-if (in_array('identificado', $_SESSION) and $_SESSION["id"] == 1) {
-    intentosPrevios();
-    echo Formulario::formularioBorrarUusuario();
-    echo Formulario::formularioAñadirJuego();
-    echo Formulario::formularioAñadirModificarJuego();
+if (in_array('identify', $_SESSION) and $_SESSION["type"] == 1) {
+    previous();
+    echo MyForm::eraseUserForm();
+    echo MyForm::deleteGameForm();
+    echo MyForm::addModifyGameForm();
 } else {
     header('Location:index.php');
 }
 session_write_close();
 View::end();
 
-function intentosPrevios() {
-    if (filter_input(INPUT_GET, 'codigo')) {
-        switch (filter_input(INPUT_GET, 'codigo')) {
+function previous() {
+    if (filter_input(INPUT_GET, 'code')) {
+        switch (filter_input(INPUT_GET, 'code')) {
             case '-1':
                 echo '<p>El usuario escrito no existe, por favor asegúrese de que el nombre es correcto...</p>';
                 break;

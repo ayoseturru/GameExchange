@@ -1,24 +1,17 @@
 <?php
 
 include_once './lib.php';
+include_once './MyForm.php';
 
 View::start('Login');
 
-intentosPrevios();
+previous();
 
-echo
-'<form action = "validacion.php" method = "post">
-    <p>Username: <input type = "text" name = "username" /></p>
-    <p>Password: <input type = "password" name = "password" /></p>
-    <p><input type = "submit" value="Entrar" /></p>
-</form>';
-
-echo '<p>¿Aún no tienes cuenta? ¡Pues regístrate!</p>';
-echo '<a href="registro.php">Registro</a>';
+echo MyForm::loginForm();
 
 View::end();
 
-function intentosPrevios() {
+function previous() {
     switch (filter_input(INPUT_GET, 'error')) {
         case 1:
             echo '<p>Asegúrese de haber rellenado ambos campos...</p>';

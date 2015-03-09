@@ -1,25 +1,25 @@
 <?php
 
-comprobarFormulario();
+checkForm();
 
-function comprobarFormulario() {
+function checkForm() {
     if (filter_input(INPUT_POST, 'username') == '' || filter_input(INPUT_POST, 'password') == '') {
         header("Location: login.php?error=1");
         exit(1);
     } else {
-        $id = validarUsuario();
-        if ($id < 0) {
+        $type = checkUser();
+        if ($type < 0) {
             header("Location: login.php?error=2");
             exit(2);
         } else {
-            logIn($id);
-            header("Location: principal.php");
+            logIn($type);
+            header("Location: home.php");
             exit(0);
         }
     }
 }
 
-function validarUsuario() {
+function checkUser() {
     $userinfo = (new PDO('sqlite:./datos.db'))->query('SELECT USUARIO,CLAVE,TIPO FROM USUARIOS WHERE USUARIO ="' . filter_input(INPUT_POST, 'username') . '"');
     if ($userinfo) {
         foreach ($userinfo as $valor) {
@@ -32,12 +32,12 @@ function validarUsuario() {
     return -1;
 }
 
-function logIn($id) {
+function logIn($type) {
     session_start();
-    $_SESSION["identificado"] = TRUE;
-    $_SESSION["id"] = $id;
-    $_SESSION["usuario"] = filter_input(INPUT_POST, 'username');
-    setcookie('nombre', (new PDO('sqlite:./datos.db'))->query('SELECT NOMBRE FROM USUARIOS WHERE USUARIO ="' . $_SESSION["usuario"] . '"')->fetchColumn(0));
-    setcookie('idusuario', (new PDO('sqlite:./datos.db'))->query('SELECT id FROM USUARIOS WHERE USUARIO ="' . $_SESSION["usuario"] . '"')->fetchColumn(0));
+    $_SESSION["identify"] = TRUE;
+    $_SESSION["type"] = $type;
+    $_SESSION["username"] = filter_input(INPUT_POST, 'username');
+    setcookie('name', (new PDO('sqlite:./datos.db'))->query('SELECT NOMBRE FROM USUARIOS WHERE USUARIO ="' . $_SESSION["username"] . '"')->fetchColumn(0));
+    setcookie('userid', (new PDO('sqlite:./datos.db'))->query('SELECT id FROM USUARIOS WHERE USUARIO ="' . $_SESSION["username"] . '"')->fetchColumn(0));
     session_write_close();
 }

@@ -1,13 +1,13 @@
 <?php
 
 include_once './lib.php';
-include_once './formulario.php';
+include_once './MyForm.php';
 
 View::start('Búsqueda');
 
 echo '<h1>BÚSQUEDA DE VIDEOJUEGOS</h1>';
 
-echo Formulario::formularioBuscar();
+echo MyForm::searchForm();
 
 if (filter_input(INPUT_POST, 'busqueda') === '') {
     failSearch(false);
@@ -29,12 +29,16 @@ function search() {
             } else {
                 if ($first) {
                     echo '<h2>Resultados de la búsqueda</h2>';
+                    echo '<ul>';
                     $first = FALSE;
                 }
-                $url = "juego.php?id=$value[id]";
+                echo '<li>';
+                $url = "game.php?id=$value[id]";
                 echo "<a href=$url>$value[nombre]</a>";
+                echo '</li>';
             }
         }
+        echo '</ul>';
     }
 }
 
