@@ -72,7 +72,7 @@ class MyForm {
         '<form action = "register.php" method = "post">
             <fieldset>
             <legend>Registro</legend>
-            <img src="registro.jpg"><img>
+            <img src="registro.jpg">
             <p>¡Regístrate en un minuto rellenando el siguiente formulario!</p> 
             <p>Username: <input type = "text" name = "new_username" /></p>
             <p>Password: <input type = "password" name = "new_pass" /></p>
@@ -87,22 +87,24 @@ class MyForm {
     public static function editPasswordForm() {
         return
         '<form action = "edit_password.php" method = "post">
+                <fieldset>
                 <p>Antigua Contraseña: <input type = "password" name = "old_password" /></p>
                 <p>Nueva Contraseña: <input type = "password" name = "new_password" /></p>
                 <p>Otra vez su nueva contraseña: <input type = "password" name = "again_new_password" /></p>
                 <p><input type = "submit" value="Modificar" /></p>
+                </fieldset>
         </form>';
     }
 
     public static function loginForm() {
         return 
-        '<form action = "sign_in.php" method = "post">' .
-            '<fieldset><legend>LOGIN</legend>' . 
-            '<img src="key.jpg"><img>' .
-            '<p>Username: <input type = "text" name = "username" /></p>
+        '<form action = "sign_in.php" method = "post">
+            <fieldset><legend>LOGIN</legend>
+            <img src="key.jpg">
+            <p>Username: <input type = "text" name = "username" /></p>
             <p>Password: <input type = "password" name = "password" /></p>
             <p><input type = "submit" value="Entrar" /></p>
-        </form>' . '<p>¿Aún no tienes cuenta? ¡Pues regístrate!</p>' . '<a href="sign_up.php">Registro</a></fieldset>';
+        </form><p>¿Aún no tienes cuenta? ¡Pues regístrate!</p><a href="sign_up.php">Registro</a></fieldset>';
     }
 
 }

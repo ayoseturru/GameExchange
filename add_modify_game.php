@@ -1,11 +1,11 @@
 <?php
 
 if (filter_input(INPUT_POST, 'add_modify_game')) {
-    $aux = existe();
+    $aux = exists();
     if ($aux === FALSE) {
         introduce();
     } else {
-        actualizar($aux);
+        update($aux);
         header('Location: manager.php?code=6');
     }
     header('Location: manager.php?code=6');
@@ -15,7 +15,7 @@ if (filter_input(INPUT_POST, 'add_modify_game')) {
     exit(1);
 }
 
-function modificar() {
+function modify() {
     $db = new PDO("sqlite:./datos.db");
     $db->exec('PRAGMA foreign_keys = ON;');
     $db->query('DELETE FROM USUARIOS WHERE USUARIO=' . '"' . filter_input(INPUT_POST, 'delete_user') . '"');
@@ -23,7 +23,7 @@ function modificar() {
     header('Location: manager.php?code=2');
 }
 
-function existe() {
+function exists() {
     $res = (new PDO("sqlite:./datos.db"))->query('SELECT NOMBRE FROM JUEGOS');
     if ($res) {
         foreach ($res as $value) {
@@ -35,7 +35,7 @@ function existe() {
     return FALSE;
 }
 
-function actualizar($nombre) {
+function update($nombre) {
     $db = new PDO('sqlite:./datos.db');
     updatePlatform($db, $nombre);
     updateDescription($db, $nombre);

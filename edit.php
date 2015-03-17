@@ -5,7 +5,7 @@ session_start();
 if (filter_input(INPUT_POST, 'edit_name')) {
     $inst = (new PDO('sqlite:./datos.db'))->prepare('UPDATE USUARIOS SET NOMBRE=? WHERE USUARIO=?');
     $res = $inst->execute(array(filter_input(INPUT_POST, 'edit_name'), $_SESSION["username"]));
-    $_COOKIE["name"] = filter_input(INPUT_POST, 'edit_name');
+    setcookie('name',filter_input(INPUT_POST, 'edit_name'));
 }
 
 if (filter_input(INPUT_POST, 'edit_email')) {

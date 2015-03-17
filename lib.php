@@ -4,24 +4,25 @@ class View {
 
     public static function start($title) {
         $html = "<!DOCTYPE html>
-<html>
-<head>
-<meta charset=\"utf-8\">
-<link rel=\"stylesheet\" type=\"text/css\" href=\"estilos.css\">
-<title>$title</title>
-</head>
-<body>";
+            <html>
+                <head>
+                    <meta charset=\"utf-8\">
+                    <link rel=\"stylesheet\" type=\"text/css\" href=\"estilos.css\">
+                    <script src=\"http://code.jquery.com/jquery-1.10.1.min.js\"></script>
+                    <script type=\"text/javascript\" src=\"scripts.js\"></script>
+                    <title>$title</title>
+                </head>
+                <body>";
         echo $html;
-        (new View())->showHeader();
+        View::showHeader();
     }
 
     public static function end() {
-        echo '</body>
-</html>';
+        echo '</body></html>';
     }
 
-    private function showHeader() {
-        echo "<a href='index.php'><img src = 'club.jpg'><img></a>";
+    private static function showHeader() {
+        echo "<a href='index.php'><img src = 'club.jpg'></a>";
         session_start();
         $first = "Portada";
         $firstPath= "index.php";

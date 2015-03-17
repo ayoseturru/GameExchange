@@ -38,17 +38,22 @@ function showGameInfo($info) {
 }
 
 function showExtraInfo() {
-    $cantidad = (new PDO('sqlite:./datos.db'))->query('SELECT * FROM CAMBIABLES WHERE JUEGO=' . filter_input(INPUT_GET, 'id'))->fetchColumn(0);
+    $cantidad = (new PDO('sqlite:./datos.db'))->query('SELECT COUNT(*) FROM CAMBIABLES WHERE JUEGO=' . filter_input(INPUT_GET, 'id'))->fetchColumn(0);
     echo "<h3>Cantidad</h3><p>Actualmente tenemos $cantidad[0] ejemplares del juego seleccionado...</p>";
     echo '<h3>Prestamistas</h3>';
-    echo '<p>A continuación te mostramos los correos de las personas que poseen el juego para que te puedas poner en contacto con ellos:<p>';
+
+    if ($cantidad == 0) {
+        echo '<p>Actualmente no disponemos de ningún prestamista para ti...</p>';
+    } else {
+        echo '<p>A continuación te mostramos los correos de las personas que poseen el juego para que te puedas poner en contacto con ellos:</p>';
+    }
+
     $aux = (new PDO('sqlite:./datos.db'))->query('SELECT USUARIO FROM CAMBIABLES WHERE JUEGO=' . filter_input(INPUT_GET, 'id'));
     if ($aux) {
         $taken = FALSE;
         foreach ($aux as $value) {
             if ($value['usuario'] == $_COOKIE['userid']) {
                 $taken = TRUE;
-                continue;
             }
             showOwner($value['usuario']);
         }
@@ -57,7 +62,7 @@ function showExtraInfo() {
 }
 
 function showOwner($owner) {
-    echo (new PDO('sqlite:./datos.db'))->query('SELECT EMAIL FROM USUARIOS WHERE ID=' . $owner)->fetchColumn(0) . '<br>';
+    echo '<p>' . (new PDO('sqlite:./datos.db'))->query('SELECT EMAIL FROM USUARIOS WHERE ID=' . $owner)->fetchColumn(0) . '</p>';
 }
 
 function offerDesofrecer($taken) {
@@ -67,12 +72,12 @@ function offerDesofrecer($taken) {
         echo "<a href=$url>Quiero dejar de ofrecer este juego</a>";
     } else {
         $url = 'offer_game' . $query;
-        echo "<br><a href=$url>Quiero ofrecer este juego</a>";
+        echo "<a href=$url>Quiero ofrecer este juego</a>";
     }
 }
 
 function showAvailable($available) {
-    if($available !== '0') {
+    if ($available !== '0') {
         echo '<p>Actualmente disponemos de ejemplares de este juego para intercambio</p>';
     } else {
         echo '<p>Actualmente no disponemos de ejemplares de este juego para intercambio</p>';

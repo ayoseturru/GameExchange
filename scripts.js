@@ -9,15 +9,6 @@ $(document).ready(function () {
     });
 });
 
-
-$(document).ready(function () {
-    $("img").mouseenter(function () {
-        $("img").animate({height: 150});
-    }).mouseleave(function () {
-        $("img").animate({height: 70});
-    });
-});
-
 $(document).ready(function () {
     $('input[name="busqueda"]').val('Juego a buscar...');
     $('input[name="busqueda"]').click(function () {
