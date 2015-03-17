@@ -9,6 +9,7 @@ showGameInfo($info);
 View::end();
 exit(0);
 
+// Control que el script se utilice indicando la variable id.
 function checkQuery() {
     if (!filter_input(INPUT_GET, 'id')) {
         header('Location: search.php');
@@ -16,6 +17,7 @@ function checkQuery() {
     }
 }
 
+// Muestra información de un juego atendiendo al usuario que esté utilizando el sistema.
 function showGameInfo($info) {
     $available = (new PDO('sqlite:./datos.db'))->query('SELECT COUNT(*) FROM CAMBIABLES WHERE JUEGO=' . filter_input(INPUT_GET, 'id'))->fetchColumn(0);
     showAvailable($available);
@@ -37,12 +39,13 @@ function showGameInfo($info) {
     }
 }
 
+// Muestra información extra para usuarios logueados.
 function showExtraInfo() {
-    $cantidad = (new PDO('sqlite:./datos.db'))->query('SELECT COUNT(*) FROM CAMBIABLES WHERE JUEGO=' . filter_input(INPUT_GET, 'id'))->fetchColumn(0);
-    echo "<h3>Cantidad</h3><p>Actualmente tenemos $cantidad[0] ejemplares del juego seleccionado...</p>";
+    $n = (new PDO('sqlite:./datos.db'))->query('SELECT COUNT(*) FROM CAMBIABLES WHERE JUEGO=' . filter_input(INPUT_GET, 'id'))->fetchColumn(0);
+    echo "<h3>Cantidad</h3><p>Actualmente tenemos $n ejemplares del juego seleccionado...</p>";
     echo '<h3>Prestamistas</h3>';
 
-    if ($cantidad == 0) {
+    if ($n == 0) {
         echo '<p>Actualmente no disponemos de ningún prestamista para ti...</p>';
     } else {
         echo '<p>A continuación te mostramos los correos de las personas que poseen el juego para que te puedas poner en contacto con ellos:</p>';
@@ -52,6 +55,7 @@ function showExtraInfo() {
     if ($aux) {
         $taken = FALSE;
         foreach ($aux as $value) {
+            // Comprueba si el usuario logueado tiene ofrecido el juego.
             if ($value['usuario'] == $_COOKIE['userid']) {
                 $taken = TRUE;
             }
@@ -61,10 +65,12 @@ function showExtraInfo() {
     }
 }
 
+// Muestra el prestamista de un determinado juego.
 function showOwner($owner) {
     echo '<p>' . (new PDO('sqlite:./datos.db'))->query('SELECT EMAIL FROM USUARIOS WHERE ID=' . $owner)->fetchColumn(0) . '</p>';
 }
 
+// Si el usuario logueado tiene el juego pofrecido le permite desofrecerlo y viceversa.
 function offerDesofrecer($taken) {
     $query = '.php?game=' . filter_input(INPUT_GET, 'id');
     if ($taken === TRUE) {
@@ -76,6 +82,7 @@ function offerDesofrecer($taken) {
     }
 }
 
+// Muestra información sobre la disponibilidad de un juego.
 function showAvailable($available) {
     if ($available !== '0') {
         echo '<p>Actualmente disponemos de ejemplares de este juego para intercambio</p>';

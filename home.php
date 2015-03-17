@@ -15,11 +15,13 @@ if ($_SESSION["identify"]) {
 session_write_close();
 View::end();
 
+// Muestra el contenido de la página.
 function showElements() {
     echo "<p>Hola, {$_COOKIE["name"]}</p>";
     echo showDesofrecerGameForm();
 }
 
+// Devuelve un formulario con los juegos ofrecidos por el usuario logueado para desofrecerlos si se desea.
 function showdesofrecerGameForm() {
     $db = new PDO('sqlite:./datos.db');
     $size = $db->query('select count(*) from cambiables')->fetchColumn(0);

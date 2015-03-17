@@ -20,7 +20,10 @@ class View {
     public static function end() {
         echo '</body></html>';
     }
-
+    
+    /*
+     *  Función encargada de mostrar el header de navegación atendiendo al tipo de usuario que esté utilizando el servidor.
+     */
     private static function showHeader() {
         echo "<a href='index.php'><img src = 'club.jpg'></a>";
         session_start();

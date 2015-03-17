@@ -8,6 +8,7 @@ if (filter_input(INPUT_POST, 'delete_user')) {
     exit(1);
 }
 
+// Borra en porpagación el usuario seleccionado de todo el sistema.
 function deleteUser() {
     $db = new PDO("sqlite:./datos.db");
     $db->exec('PRAGMA foreign_keys = ON;');

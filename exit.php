@@ -1,4 +1,6 @@
 <?php
+
+// Borra las cookies y datos de la variable $_SESSION que identificaban a un usuario logueado.
 session_start();
 unset($_SESSION["identify"]);
 unset($_SESSION["username"]);

@@ -1,5 +1,9 @@
 <?php
 
+
+/*
+ * Clase que proporciona acceso a formularios de uso general utilizados el en servidor.
+ */
 class MyForm {
 
     public static function searchForm() {

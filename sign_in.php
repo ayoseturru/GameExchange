@@ -19,6 +19,7 @@ function checkForm() {
     }
 }
 
+// Comprueba que el usuario exista y que haya introucido correctamente la contraseña.
 function checkUser() {
     $userinfo = (new PDO('sqlite:./datos.db'))->query('SELECT USUARIO,CLAVE,TIPO FROM USUARIOS WHERE USUARIO ="' . filter_input(INPUT_POST, 'username') . '"');
     if ($userinfo) {
@@ -32,6 +33,7 @@ function checkUser() {
     return -1;
 }
 
+// Inicia la sesión.
 function logIn($type) {
     session_start();
     $_SESSION["identify"] = TRUE;

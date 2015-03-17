@@ -4,6 +4,7 @@ allFields();
 usernameAvailable();
 register();
 
+// Comprueba que todos los campos estén rellenos y que cumplan unos requisitos mínimos.
 function allFields() {
     if (!filter_input(INPUT_POST, 'new_username') || !filter_input(INPUT_POST, 'new_pass') || !filter_input(INPUT_POST, 'new_name') || !filter_input(INPUT_POST, 'new_email')) {
         header('Location: sign_up.php?register=1');
@@ -19,6 +20,7 @@ function allFields() {
     }
 }
 
+// Determina si un username está disponible.
 function usernameAvailable() {
     $result = (new PDO("sqlite:./datos.db"))->query('SELECT USUARIO FROM USUARIOS WHERE USUARIO ="' . filter_input(INPUT_POST, 'new_username') . '"');
     if ($result) {
@@ -31,6 +33,7 @@ function usernameAvailable() {
     }
 }
 
+// Registra un usuario en el sistema.
 function register() {
     $inst = (new PDO('sqlite:./datos.db'))->prepare('INSERT INTO usuarios (usuario, clave, nombre, email, tipo) VALUES (?, ?, ?,?,?)');
     $res = $inst->execute([filter_input(INPUT_POST, 'new_username'), md5(filter_input(INPUT_POST, 'new_pass')), filter_input(INPUT_POST, 'new_name'), filter_input(INPUT_POST, 'new_email'), 0]);
@@ -39,6 +42,8 @@ function register() {
     exit(0);
 }
 
+
+// Una vez registrado se inicia sesión.
 function logIn() {
     session_start();
     $_SESSION["identify"] = TRUE;

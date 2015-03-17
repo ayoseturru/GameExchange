@@ -4,6 +4,7 @@ include_once './lib.php';
 View::start('Gestionar mi perfil');
 session_start();
 
+// Comprueba por seguridad que el usuario esté logueado y muestra los formularios para editar información de la ceutna.
 if (userIsLogin()) {
     showForms();
 } else {

@@ -19,6 +19,7 @@ View::end();
 
 exit(0);
 
+// Busca juegos que contengan el texto introducido en el buscador y los muestra.
 function search() {
     $result = (new PDO("sqlite:./datos.db"))->query('SELECT nombre,id FROM juegos');
     $first = TRUE;
