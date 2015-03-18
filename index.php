@@ -15,8 +15,7 @@ if ($res) {
     $first = true;
     foreach ($res as $game) {
         if ($first) {
-            echo "<legend id='table_legend'>últimos juegos añadidos</legend>";
-            echo "<table><tr>";
+            echo "<h2>últimos juegos añadidos</h2><table><tr>";
             foreach ($game as $field => $value) {
                 if ($first) {
                     $first = FALSE;

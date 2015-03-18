@@ -36,7 +36,7 @@
         background-color: yellow;
     }
 
-    header li a{
+    header li a {
         position: relative;
         top: 2px;
         color: #FF1493;
@@ -49,11 +49,10 @@
 
     form {
         padding-left: 10%;
+        padding-top: 5px;
     }
 
     fieldset {
-        position: relative;
-        top: 5px;
         width: 50%;
         border: 3px solid black;
         background-color: #4682B4;
@@ -96,6 +95,7 @@
     }
 
     th  {
+        width: auto;
         color: #FF1493;
         text-transform: uppercase;
         border: 2px solid black;
@@ -105,16 +105,14 @@
     td {
         color: white;
         border: 2px solid black;
+        width: auto;
     }
 
     table {
-        width: 30px;
+        width: 100%;
         text-align: center;
-        position: relative;
-        top: 10px;
         border-collapse: collapse;
         border: 3px solid black;
-        width: auto;
         background-color: #4682B4;
         font-weight: bold;
         text-transform: uppercase;
@@ -134,12 +132,6 @@
         border: 3px solid black;
     }
 
-    legend[id="table_legend"] {
-        position: relative;
-        top: 10px;
-        border-bottom: none;
-    }
-
     img[src="key.jpg"], img[src="registro.jpg"] {
         float: right;
         width: 250px;
@@ -147,6 +139,7 @@
     }
 
     p + h1 {
+        text-transform: uppercase;
         text-align: start;
         font-style: oblique;
         font-family: fantasy;
@@ -208,14 +201,11 @@
 @media print  {
     table {
         text-align: center;
-        position: relative;
-        top: 10px;
         border-collapse: collapse;
         border: 3px solid black;
-        width: auto;
+        width: 100%;
         font-weight: bold;
         text-transform: uppercase;
-        position: relative;
     }
 
     th, td  {
@@ -235,11 +225,10 @@
         color: black;
     }
 
-    fieldset{
-        position: relative;
-        top: 5px;
+    fieldset {
         width: 50%;
         border: 3px solid black;
+        background-color: #4682B4;
     }
 
     legend {
@@ -255,6 +244,10 @@
     
     img {
         display: block;
+    }
+    
+    h1,h2,h3 {
+        text-transform: uppercase;
     }
     
 }

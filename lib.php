@@ -43,7 +43,7 @@ class View {
             if ($_SESSION["type"] == 1) {
                 $first = "Home";
                 $firstPath = "home.php";
-                $third = "Administración";
+                $third = "Admin";
                 $thirdPath = "manager.php";
             }
         } else {
