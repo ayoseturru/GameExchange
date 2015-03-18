@@ -197,10 +197,11 @@
         background-color: black;
     }
     
-    .error {
+    input + span {
         color: white;
+        font-size: medium;
     }
-    
+   
 }
 
 @media print  {

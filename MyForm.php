@@ -12,9 +12,9 @@ class MyForm {
             <fieldset>
             <legend>Búsqueda</legend>
             <p>
-                Escriba el nombre del juego a buscar: <input type="search" name="busqueda">
+                Escriba el nombre del juego a buscar: <input type="search" name="busqueda"><span class="error">
             </p>
-                <input type="submit" value="Buscar"><span class="error"></span>
+                <input type="submit" value="Buscar"></span>
             </fieldset>
         </form>';
     }
@@ -79,11 +79,11 @@ class MyForm {
             <legend>Registro</legend>
             <img src="registro.jpg">
             <p>¡Regístrate en un minuto rellenando el siguiente formulario!</p> 
-            <p>Username: <input type = "text" name = "new_username" required></p>
-            <p>Password: <input type = "password" name = "new_pass" required></p>
-            <p>Password de nuevo: <input type = "password" name = "again_new_pass" required></p>
-            <p>Nombre: <input type = "text" name = "new_name" required></p>
-            <p>Email: <input type = "text" name = "new_email" required></p>
+            <p>Username: <input type = "text" name = "new_username" required><span></span></p>
+            <p>Password: <input type = "password" name = "new_pass" required><span></span></p>
+            <p>Password de nuevo: <input type = "password" name = "again_new_pass" required><span></span></p>
+            <p>Nombre: <input type = "text" name = "new_name" required><span></span></p>
+            <p>Email: <input type = "text" name = "new_email" required><span></span></p>
             <input type = "submit" value = "Entrar" >
             </fieldset>
         </form>';
@@ -106,8 +106,8 @@ class MyForm {
         '<form action = "sign_in.php" method = "post">
             <fieldset><legend>LOGIN</legend>
             <img src="key.jpg">
-            <p>Username: <input type = "text" name = "username"></p>
-            <p>Password: <input type = "password" name = "password"></p>
+            <p>Username: <input type = "text" name = "username"><span></span></p>
+            <p>Password: <input type = "password" name = "password"><span></span></p>
             <input type = "submit" value="Entrar">
         </form><p>¿Aún no tienes cuenta? ¡Pues regístrate!</p><a href="sign_up.php">Registro</a></fieldset>';
     }
