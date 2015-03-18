@@ -134,8 +134,8 @@
 
     img[src="key.jpg"], img[src="registro.jpg"] {
         float: right;
-        width: 250px;
-        height: 200px;
+        width: 20%;
+        height: 20%;
     }
 
     p + h1 {
@@ -196,6 +196,11 @@
     a:active {
         background-color: black;
     }
+    
+    .error {
+        color: white;
+    }
+    
 }
 
 @media print  {

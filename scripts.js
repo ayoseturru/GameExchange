@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('form[action="search.php"]').submit(function () {
         if ($('input[name="busqueda"]').val() === '' || $('input[name="busqueda"]').val() === 'Juego a buscar...') {
-            alert('Introduzca el nombre del juego a buscar...');
+            $('.error').html(' <br>Introduzca un nombre...');
             return false;
         } else {
             return true;
@@ -21,3 +21,4 @@ $(document).ready(function () {
         }
     });
 });
+

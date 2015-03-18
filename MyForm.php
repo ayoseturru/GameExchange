@@ -4,6 +4,7 @@
 /*
  * Clase que proporciona acceso a formularios de uso general utilizados el en servidor.
  */
+
 class MyForm {
 
     public static function searchForm() {
@@ -11,9 +12,9 @@ class MyForm {
             <fieldset>
             <legend>Búsqueda</legend>
             <p>
-                Escriba el nombre del juego a buscar: <input type="search" name="busqueda"/>
-                <input type="submit" value="Buscar">
+                Escriba el nombre del juego a buscar: <input type="search" name="busqueda">
             </p>
+                <input type="submit" value="Buscar"><span class="error"></span>
             </fieldset>
         </form>';
     }
@@ -23,9 +24,9 @@ class MyForm {
             <fieldset>
             <legend>Eliminar Usuario</legend>
             <p>
-                Escriba el username del usuario que desea eliminar <input type="text" name="delete_user"/>
-                <input type="submit" value="Eliminar">
+                Escriba el username del usuario que desea eliminar <input type="text" name="delete_user">
             </p>
+                <input type="submit" value="Eliminar" required>
             </fieldset>
         </form>';
     }
@@ -43,12 +44,12 @@ class MyForm {
         return "<form action='delete_game.php' method='post'>
                 <fieldset>
                 <legend>Eliminar Juego</legend>
-                <select name='selected_game' size=$size multiple='multiple'>
+                <select name='selected_game' size=$size multiple='multiple' required>
                 <optgroup label='Juegos'>
                 $a
                 </optgroup>
                 </select><br />
-                <input type='submit' value='Eliminar' />
+                <input type='submit' value='Eliminar'>
                 </fieldset>
                 </form>";
     }
@@ -78,12 +79,12 @@ class MyForm {
             <legend>Registro</legend>
             <img src="registro.jpg">
             <p>¡Regístrate en un minuto rellenando el siguiente formulario!</p> 
-            <p>Username: <input type = "text" name = "new_username" /></p>
-            <p>Password: <input type = "password" name = "new_pass" /></p>
-            <p>Password de nuevo: <input type = "password" name = "again_new_pass" /></p>
-            <p>Nombre: <input type = "text" name = "new_name" /></p>
-            <p>Email: <input type = "text" name = "new_email" /></p>
-            <p><input type = "submit" value = "Entrar" /></p>
+            <p>Username: <input type = "text" name = "new_username" required></p>
+            <p>Password: <input type = "password" name = "new_pass" required></p>
+            <p>Password de nuevo: <input type = "password" name = "again_new_pass" required></p>
+            <p>Nombre: <input type = "text" name = "new_name" required></p>
+            <p>Email: <input type = "text" name = "new_email" required></p>
+            <input type = "submit" value = "Entrar" >
             </fieldset>
         </form>';
     }
@@ -92,10 +93,10 @@ class MyForm {
         return
         '<form action = "edit_password.php" method = "post">
                 <fieldset>
-                <p>Antigua Contraseña: <input type = "password" name = "old_password" /></p>
-                <p>Nueva Contraseña: <input type = "password" name = "new_password" /></p>
-                <p>Otra vez su nueva contraseña: <input type = "password" name = "again_new_password" /></p>
-                <p><input type = "submit" value="Modificar" /></p>
+                <p>Antigua Contraseña: <input type = "password" name = "old_password"></p>
+                <p>Nueva Contraseña: <input type = "password" name = "new_password"></p>
+                <p>Otra vez su nueva contraseña: <input type = "password" name = "again_new_password"></p>
+                <input type = "submit" value="Modificar">
                 </fieldset>
         </form>';
     }
@@ -105,9 +106,9 @@ class MyForm {
         '<form action = "sign_in.php" method = "post">
             <fieldset><legend>LOGIN</legend>
             <img src="key.jpg">
-            <p>Username: <input type = "text" name = "username" /></p>
-            <p>Password: <input type = "password" name = "password" /></p>
-            <p><input type = "submit" value="Entrar" /></p>
+            <p>Username: <input type = "text" name = "username"></p>
+            <p>Password: <input type = "password" name = "password"></p>
+            <input type = "submit" value="Entrar">
         </form><p>¿Aún no tienes cuenta? ¡Pues regístrate!</p><a href="sign_up.php">Registro</a></fieldset>';
     }
 
