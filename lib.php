@@ -33,7 +33,7 @@ class View {
         $fourthPath = 'info.php';
         $third = "Política";
         $thirdPath = "policy.php";
-        if (in_array('identify', $_SESSION)) {
+        if (isset($_SESSION['identify'])) {
             $accion = "Salir";
             $path = "exit.php";
             $third = "Home";

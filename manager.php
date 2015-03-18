@@ -6,7 +6,7 @@ include_once './MyForm.php';
 
 View::start('Administración');
 session_start();
-if (in_array('identify', $_SESSION) and $_SESSION["type"] == 1) {
+if (isset($_SESSION['identify']) and $_SESSION["type"] == 1) {
     previous();
     echo MyForm::eraseUserForm();
     echo MyForm::deleteGameForm();

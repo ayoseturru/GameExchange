@@ -4,15 +4,21 @@ include_once './lib.php';
 
 checkQuery();
 $info = (new PDO('sqlite:./datos.db'))->query('SELECT NOMBRE,PLATAFORMA,DESCRIPCION,URL FROM JUEGOS WHERE ID=' . filter_input(INPUT_GET, 'id'));
+$exists = (new PDO('sqlite:./datos.db'))->query('SELECT COUNT(*) FROM JUEGOS WHERE ID=' . filter_input(INPUT_GET, 'id'))->fetchColumn();
 View::start('Juego');
-showGameInfo($info);
+if ($exists == 0) {
+    echo '<p>No disponemos del juego indicado...</p>';
+} else {
+    showGameInfo($info);
+}
+
 View::end();
 exit(0);
 
 // Control que el script se utilice indicando la variable id.
 function checkQuery() {
     if (!filter_input(INPUT_GET, 'id')) {
-        header('Location: search.php');
+        //header('Location: search.php');
         exit(1);
     }
 }
@@ -30,7 +36,7 @@ function showGameInfo($info) {
             echo "<h3>URL</h3><p><a href=$value[URL]>Página Oficial</a></p>";
         }
         session_start();
-        if (in_array('id', $_SESSION)) {
+        if (isset($_SESSION['type'])) {
             showExtraInfo();
         }
         session_write_close();
