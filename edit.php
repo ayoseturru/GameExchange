@@ -1,5 +1,9 @@
 <?php
 
+/*
+* Edita los campos nombre y correo de un usuario registrado.
+*/
+
 session_start();
 
 if (filter_input(INPUT_POST, 'edit_name')) {
