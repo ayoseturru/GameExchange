@@ -24,7 +24,7 @@ function previous() {
                 echo '<p>El usuario escrito no existe, por favor asegúrese de que el nombre es correcto...</p>';
                 break;
             case '1':
-                echo '<p>Escriba el nombre del uusuario...</p>';
+                echo '<p>Escriba el nombre del usuario...</p>';
                 break;
             case '2':
                 echo '<p>El usuario se eliminó correctamente...</p>';
