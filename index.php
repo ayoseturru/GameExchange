@@ -27,17 +27,17 @@ if ($res) {
             $first = false;
             echo "</tr>";
         }
-        
-        if($jump < $cuantity - 5) {
+
+        if ($jump < $cuantity - 5) {
             $jump = $jump + 1;
             continue;
         }
-        
-        echo "<tr>"
-                . "<td><a href=game.php?id=$game[id]>$game[nombre]</a></td>"
-                . "<td>$game[plataforma]</td><td>$game[descripcion]</td>"
-                . "<td><a href=$game[URL]>$game[URL]</a></td>"
-            . "</tr>";
+
+        echo "<tr>
+               <td><a href=game.php?id=$game[id]>$game[nombre]</a></td>
+               <td>$game[plataforma]</td><td>$game[descripcion]</td>
+               <td><a href=$game[URL]>$game[URL]</a></td>
+            </tr>";
     }
     echo '</table>';
 }
