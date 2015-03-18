@@ -40,7 +40,7 @@ function showdesofrecerGameForm() {
                 <optgroup label='Juegos'>
                 $a
                 </optgroup>
-                </select><br />
+                </select><br>
                 <input type='submit' value='Desofrecer' />
                 </fieldset>
                 </form>";
