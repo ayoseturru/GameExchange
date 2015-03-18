@@ -24,7 +24,6 @@ function showElements() {
 // Devuelve un formulario con los juegos ofrecidos por el usuario logueado para desofrecerlos si se desea.
 function showdesofrecerGameForm() {
     $db = new PDO('sqlite:./datos.db');
-    $size = $db->query('select count(*) from cambiables')->fetchColumn(0);
     $games = $db->query('SELECT USUARIO,JUEGO FROM CAMBIABLES WHERE USUARIO=' . $_COOKIE["userid"]);
     $a = '';
     if ($games) {
@@ -36,7 +35,7 @@ function showdesofrecerGameForm() {
     return "<form action='desofrecer_game_home.php' method='post'>
                 <fieldset>
                 <legend>Mis juegos</legend>
-                <select name='selected_game' size=$size multiple='multiple'>
+                <select name='selected_game' size=5 multiple='multiple'>
                 <optgroup label='Juegos'>
                 $a
                 </optgroup>
