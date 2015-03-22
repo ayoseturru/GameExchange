@@ -8,6 +8,7 @@ View::start('Administración');
 session_start();
 if (isset($_SESSION['identify']) and $_SESSION["type"] == 1) {
     previous();
+    echo '<p id="message"></p>';
     echo MyForm::eraseUserForm();
     echo MyForm::deleteGameForm();
     echo MyForm::addModifyGameForm();

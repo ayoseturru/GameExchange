@@ -35,7 +35,7 @@ function showdesofrecerGameForm() {
     return "<form action='desofrecer_game_home.php' method='post'>
                 <fieldset>
                 <legend>Mis juegos</legend>
-                <select name='selected_game' size=5 multiple='multiple'>
+                <select name='selected_game' size=5 multiple='multiple' required>
                 <optgroup label='Juegos'>
                 $a
                 </optgroup>

@@ -28,6 +28,7 @@ function showForms() {
             <p>Nombre: <input type="text" name="edit_name"/></p>
             <p>Email: <input type="text" name="edit_email"/></p>
             <p><input type = "submit" value = "Modificar" /></p>
+            <p id="info"></p>
          </fieldset>
     </form>';
     echo '<br><a href="password.php">Modificar mi contraseña</a>';

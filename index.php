@@ -33,7 +33,7 @@ if ($res) {
         }
 
         echo "<tr>
-               <td><a href=game.php?id=$game[id]>$game[nombre]</a></td>
+               <td><a href=\"game.php?id=$game[id]\">$game[nombre]</a></td>
                <td>$game[plataforma]</td><td>$game[descripcion]</td>
                <td><a href=$game[URL]>$game[URL]</a></td>
             </tr>";

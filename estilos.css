@@ -4,50 +4,50 @@
         background-color: #D0D0D0;
     }
 
-    header + h1 {
+    nav {
+        display: block;
+    }
+
+    nav + h1 {
+        font-style: oblique;
+        font-family: fantasy;
+    }
+
+    nav ul {
+        padding-left: 5%;
+        border: 3px solid black;
+        background-color: #4682B4;
+        display: block;
+        list-style: none;
+    }
+
+    nav ul li {
+        text-align: center;
+        border: 2px solid black;
+        display: inline-block;
+        margin-right: 1%;
+        margin-bottom: 0.5%;
+        margin-top: 0.5%;
+        width: 17%;
+        background-color: #505050;
+    }
+
+    nav ul li a{
+        color: #FF1493;
+    }
+
+    a:hover {
+        color: yellow;
+    }
+
+    nav + h1 {
         font-style: oblique;
         font-family: fantasy;
         padding-left: 10%;
     }
 
-    header {
-        border: 3px solid black;
-        background-color: #4682B4;
-        list-style:none;
-        padding-left: 7%;
-        height: 35px;
-    }
-
-    header li {
-        width: 17%;
-        height: 75%;
-        margin: 0.25%;
-        float:left;
-        border: 2px solid black;
-        text-align: center;
-        background-color: #505050;
-    }
-
-    a:visited a:focus a:hover {
-        color: yellow;
-    }
-
-    a:focus {
-        background-color: yellow;
-    }
-
-    header li a {
-        position: relative;
-        top: 2px;
-        color: #FF1493;
-        text-decoration: none;
-    }
-
-    header li a:hover {
-        color: yellow;
-    }
-
     form {
+        clear: both;
         padding-left: 10%;
         padding-top: 5px;
     }
@@ -77,6 +77,7 @@
     form p {
         font-weight: bolder;
         font-size: larger;
+        font-size: x-large;
     }
 
     legend {
@@ -145,7 +146,7 @@
         font-family: fantasy;
     }
 
-    header + p {
+    nav + p {
         font-weight: bold;
         color: black;
         font-size: x-large;
@@ -157,16 +158,6 @@
         font-size: 25px;
         font-family: fantasy;
         color: #4682B4;
-    }
-
-    li a {
-        color: #FF1493;
-        font-weight: bold;
-        font-size: large;
-    }
-
-    li a:hover {
-        color: yellow;
     }
 
     h3 + p , p + p {
@@ -184,24 +175,57 @@
     a[href="password.php"]:hover {
         color: yellow;
     }
-    
+
     a[href="sign_up.php"] {
         color: #FF1493;
     }
-    
+
     form[action="desofrecer_game_home.php"] {
         width: 600px;
     }
-    
+
     a:active {
         background-color: black;
     }
-    
+
     input + span {
-        color: white;
+        color: yellow;
         font-size: medium;
+        display: block;
     }
-   
+
+    #info {
+        color: yellow;
+    }
+
+    h2  + ul {
+        font-size: large;
+        color: #4682B4;
+        font-weight: bold;
+        font-family: fantasy;
+        font-style: oblique;
+        list-style: circle;
+    }
+
+    .center {
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .infop {
+        font-size: x-large;
+        text-align: justify;
+    }
+
+    #apolicy {
+        display: block;
+        color: white;
+    }
+
+    #apolicy:hover {
+        color: yellow;
+    }
 }
 
 @media print  {
@@ -219,7 +243,7 @@
         border: 2px solid black;
     }
 
-    header {
+    nav {
         display: none;
     }
 
@@ -243,17 +267,27 @@
         text-transform: uppercase;
         border: 2px solid black;
     }
-    
+
     img[src="key.jpg"], img[src="registro.jpg"]{
         display: none;
     }
-    
+
     img {
         display: block;
     }
-    
+
     h1,h2,h3 {
         text-transform: uppercase;
     }
-    
+
+    .center {
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .infop {
+        font-size: xx-large;
+        text-align: justify;
+    }
 }
