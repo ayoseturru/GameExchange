@@ -1,5 +1,5 @@
 # GameExchange
-A Java Currency Exchanger that gets latest currency from [fixer.io](http://www.fixer.io)
+A PHP APP to exchange games with people.
 
 ### Prerequisities
 
